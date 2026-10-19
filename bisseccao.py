@@ -11,7 +11,7 @@ def funcao(R, L, C, t):
         raise ValueError("Discriminante negativo.")
     w = math.sqrt(discriminante)
 
-    #retorna a função do problema
+    #retorna o valor da função calculado
     return math.exp(-R * t / (2 * L)) * math.cos(w * t) - 0.01
 
 #Encontra a raiz utilizando o método da bisseção.
@@ -77,7 +77,7 @@ def bissecao(inicio, fim, L, C, t, tolerancia):
             meio_antigo = meio
             f_inicio = f_meio
 
-    #iteração onde o erro calculado se torna menor que a teloreancia definida, retorna a raiz para função
+    #ao validar a condição do loop e vendo que esta satisfeita, retorna o valor de R e a iteração
     return meio, iteracao
 
 def main():
@@ -100,7 +100,7 @@ def main():
     print(f"Tempo: {t} s")
     print("Objetivo: q(t)/q0 = 0.01")
 
-    #executa o a função da bissecção para os valores definidos
+    #Executa o metodo da bissecção
     try:
         R, iteracoes = bissecao(
             inicio, fim, L, C, t, tolerancia
@@ -114,6 +114,9 @@ def main():
             "Razão q(t)/q0: "
             f"{funcao(R, L, C, t) + 0.01:.10f}"
         )
+
+        # A partir daqui, geração do grafico da função
+        
         # Gera valores de resistência para desenhar a curva
         valores_R = [
             inicio + i * (fim - inicio) / 500
